@@ -10,7 +10,8 @@ public class Candy extends DessertItem{
 	 * default constructor
 	 */
 	public Candy() {
-		super("Candy");
+		weight = 0;
+		pricelbs = 0;
 	}
 	/**
 	 * creates a constructor for the name, weight and price per pound of the Candy class
@@ -55,5 +56,15 @@ public class Candy extends DessertItem{
         double newInput = bd.doubleValue();
 		return newInput;
 	}
-	
+	public String toString() {
+		String namePrice = String.format("%-30s $%.2f%n", this.getName(),this.getCost());
+		String output = this.extraInfo() +"\n"+ namePrice;
+		String nameCal = this.getName()+" cal:" +this.getCalories();
+		if (this.getCalories()>0) {
+			return output+ nameCal+ "\n";
+		}
+		else {
+		return output;
+		}
+	}
 }

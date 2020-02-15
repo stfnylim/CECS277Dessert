@@ -43,6 +43,9 @@ public class Checkout {
 		}
 		return cost;
 	}
+	public void sort() {
+		//this.sort(cart);
+	}
 	/**
 	 * Returns total tax on items in cents
 	 * @return total tax on items in cents
@@ -55,27 +58,34 @@ public class Checkout {
 	}
 	
 	public void getReceipt() {
+		System.out.println("Receipt:");
 		double total = this.totalCost()+this.totalTax();
 		System.out.println("Number of items:"+ this.numberOfItems());
-		System.out.println("Total cost:" + this.totalCost()*100);
-		System.out.println("Total tax:"+ this.totalTax()*100);
-		System.out.println("Cost + tax:" + total*100 + "\n");
+		System.out.println("Total cost (cents): " + ((int)(this.totalCost()*100)));
+		System.out.println("Total tax (cents): "+ ((int)(this.totalTax()*100)));
+		System.out.println("Cost + tax (cents): " + ((int)(total*100)) + "\n");
 		
-		
-		
-		System.out.println("----Steph's Sweet Shop----");
+		System.out.println("     ----Steph's Sweet Shop----");
 		for (DessertItem item: cart) {
-			if(item instanceof Candy ) {
-				System.out.println(((Candy)item).extraInfo());
+			if(item instanceof Sundae) {
+				Sundae sundae = ((Sundae)item);
+				System.out.println(sundae.name+"(Sundae)");
+				System.out.printf("%-30s $%.2f%n",("with "+(sundae.topping+"(Topping)")), item.getCost());
 			}
-			else if(item instanceof Cookie) {
-				System.out.println(((Cookie)item).extraInfo());
+			else {
+				if(item instanceof Candy ) {
+					System.out.println(((Candy)item).extraInfo());
+				}
+				else if(item instanceof Cookie) {
+					System.out.println(((Cookie)item).extraInfo());
+				}
+				
+				System.out.printf("%-30s $%.2f%n",item.getName(), item.getCost());
 			}
-			System.out.printf("%-20s $%.2f%n",item.getName(), item.getCost());
 		}
 		System.out.println();
-		System.out.printf("%-20s $%.2f%n","Tax", this.totalTax());
-		System.out.printf("%-20s $%.2f%n","Total Cost", total);
+		System.out.printf("%-30s $%.2f%n","Tax", this.totalTax());
+		System.out.printf("%-30s $%.2f%n","Total Cost", total);
 	}
 	/**
 	 * @return - a String representing a receipt for the current list of

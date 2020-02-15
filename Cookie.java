@@ -10,7 +10,8 @@ public class Cookie extends DessertItem{
 	 * default constructor of Cookie
 	 */
 	public Cookie() {
-		super("Cookie");
+		number = 0;
+		pricedzn = 0;
 	}
 	/**
 	 * initializes the name, number of cookies and 
@@ -41,5 +42,13 @@ public class Cookie extends DessertItem{
         double newInput = bd.doubleValue();
 		return newInput;
 	}
-	
+	public String toString() {
+		String namePrice = String.format("%-30s $%.2f%n", this.getName(),this.getCost());
+		String output = this.extraInfo() + "\n" + namePrice;
+		if (this.getCalories()>0) {
+		return output+ this.getName()+" cal:" +this.getCalories()+ "\n";
+		}
+		return output;
+		
+	}
 }

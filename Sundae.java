@@ -7,7 +7,10 @@ public class Sundae extends IceCream{
 	 * default constructor
 	 */
 	public Sundae(){
-		super("Sundae");
+		costTop = 0;
+		cost = 0;
+		topping = "";
+	
 	}
 	/**
 	 * Initializes the IceCream name, cost and the toppings cost
@@ -22,6 +25,7 @@ public class Sundae extends IceCream{
 		costTop = ct;
 		this.topping = topping;
 	}
+	
 	public String getName() {
 		return name+"(Sundae)"+" with "+topping+"(Topping)";
 	}
@@ -29,5 +33,13 @@ public class Sundae extends IceCream{
 	public double getCost() {
 		// TODO Auto-generated method stub
 		return cost + costTop;
+	}
+	public String toString() {
+		String namePrice = name+"(Sundae)\n" + String.format("%-30s $%.2f%n", ("with "+topping+"(Topping)"),this.getCost());
+		if (this.getCalories()>0) {
+			return namePrice+ this.name+"(Sundae) cal:" +this.getCalories() + "\n";
+			
+		}
+		return namePrice;
 	}
 }

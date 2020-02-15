@@ -6,7 +6,6 @@ public class IceCream extends DessertItem{
 	 * default constructor sets name to IceCream
 	 */
 	public IceCream() {
-		super("IceCream");
 	}
 	/**
 	 * initializes the name and cost of the IceCream item
@@ -30,5 +29,13 @@ public class IceCream extends DessertItem{
 	@Override
 	public double getCost() {
 		return cost;
+	}
+	public String toString() {
+		String namePrice = String.format("%-30s $%.2f%n", this.getName(),this.getCost());
+		if (this.getCalories()>0) {
+			return namePrice+ this.getName()+" cal:" +this.getCalories()+"\n";
+		}
+		return namePrice;
+		
 	}
 }
